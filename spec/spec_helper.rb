@@ -18,6 +18,6 @@ end
 
 def setup
   @test_train = Train.new({:name => "Blue"})
-  # @test_station = Station.new({:name => "Park Place"})
+  @test_station = Station.new({:name => "Park Place"})
   # @test_stop = Stop.new({:line_id => 1, :station_id => 3})
 end
