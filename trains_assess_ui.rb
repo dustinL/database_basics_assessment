@@ -59,4 +59,13 @@ def add_line
   puts "\nTrain '#{user_input}' has been created!\n"
 end
 
+def view_lines
+  puts "\nHere are the existing train lines:"
+  lines = Train.all
+  lines.each do |line|
+    puts "#{line.id}. #{line.name}"
+  end
+  puts "\n"
+end
+
 main_menu
