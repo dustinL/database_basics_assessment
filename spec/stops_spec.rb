@@ -11,7 +11,7 @@ describe Stop do
 
   it "returns the attributes of the current stop" do
     expect(@test_stop.line_id).to eq 1
-    expect(@test_stop.station_id).to eq 3
+    expect(@test_stop.station_id).to eq 1
   end
 
   it "saves a stop to the stops table" do

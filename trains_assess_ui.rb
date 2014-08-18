@@ -68,7 +68,9 @@ def view_lines
   puts "\n"
 end
 
-# def view_lines_by_station
+def view_lines_by_station
+
+end
 
 def station_menu
   puts "\nEnter 'a' to add a station"

@@ -17,5 +17,15 @@ describe Train do
     @test_train.save
     expect(Train.all).to eq [@test_train]
   end
+
+  describe "find_trains_through_station" do
+    it "returns all of the trains that go through a certain station" do
+      @test_train.save
+      @test_station.save
+      @test_stop.save
+      test_lines = Train.find_trains_through_station(@test_station.id)
+      expect(test_lines.first).to eq @test_train
+    end
+  end
 end
 
