@@ -17,6 +17,5 @@ describe Train do
     @test_train.save
     expect(Train.all).to eq [@test_train]
   end
-
 end
 

@@ -18,5 +18,4 @@ describe Stop do
     @test_stop.save
     expect(Stop.all).to eq [@test_stop]
   end
-
 end
