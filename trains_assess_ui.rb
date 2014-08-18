@@ -48,7 +48,7 @@ def train_menu
   elsif user_choice == 'x'
     exit
   elsif user_choice != 'm'
-    puts "\nInvalid entry, please try again\n\n"
+    puts "\nNot a valid entry\n\n"
   end
 end
 
@@ -67,5 +67,45 @@ def view_lines
   end
   puts "\n"
 end
+
+# def view_lines_by_station
+
+def station_menu
+  puts "\nEnter 'a' to add a station"
+  puts "Enter 'v' to view all stations"
+  puts "Enter 'l' to view all stations for a line"
+  puts "Enter 'm' to return to the main menu"
+  puts "Enter 'x' to exit"
+
+  user_choice = gets.chomp
+
+  if user_choice == 'a'
+    add_station
+  elsif user_choice == 'v'
+    view_stations
+  elsif user_choice == 'l'
+    view_stations_by_line
+  elsif user_choice == 'x'
+    exit
+  elsif user_choice != 'm'
+    puts "\nNot a valid entry\n"
+  end
+end
+
+def add_station
+  puts "\nPlease enter station name:\n"
+  user_input = gets.chomp
+  Station.new({:name => user_input}).save
+  puts "\nStation '#{user_input}' has been created!\n"
+end
+
+def view_stations
+  puts "\nHere are the existing stations:\n"
+  stations = Station.all
+  stations.each do |station|
+    puts "#{station.id}. #{station.name}"
+  end
+end
+
 
 main_menu
