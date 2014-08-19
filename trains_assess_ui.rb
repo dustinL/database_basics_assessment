@@ -160,4 +160,26 @@ def train_stop
   puts "Stop for line #{line_id} at station #{station_id} has been created.\n"
 end
 
+def station_stop
+  view_stations
+  puts "Please select the index number of the station for the new stop."
+  station_id = gets.chomp.to_i
+
+  view_lines
+  puts "\nPlease select the index number of the train line for the new stop."
+  line_id = gets.chomp.to_i
+
+  Stop.new({:line_id => line_id, :station_id => station_id}).save
+  puts "Stop for line #{line_id} at station #{station_id} has been created.\n"
+end
+
+def view_stops
+  puts "\nHere are the existing stops:\n"
+  stops = Stop.all
+  stops.each do |stop|
+    puts "#{stop.id}. Line #{stop.line_id} at Station #{stop.station_id}"
+  end
+  puts "\n"
+end
+
 main_menu
