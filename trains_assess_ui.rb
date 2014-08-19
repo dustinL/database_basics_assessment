@@ -117,6 +117,7 @@ end
 def stop_menu
   puts "\nEnter 'a' to add a stop"
   puts "Enter 'v' to view all stops"
+  puts "Enter 'd' to delete a stop"
   puts "Enter 'm' to return to the main menu"
   puts "Enter 'x' to exit"
 
@@ -126,6 +127,8 @@ def stop_menu
     add_stop
   elsif user_choice == 'v'
     view_stops
+  elsif user_choice == 'd'
+    delete_stop
   elsif user_choice == 'x'
     exit
   elsif user_choice != 'm'
@@ -180,6 +183,14 @@ def view_stops
     puts "#{stop.id}. Line #{stop.line_id} at Station #{stop.station_id}"
   end
   puts "\n"
+end
+
+def delete_stop
+  view_stops
+  puts "Enter the index of the stop you want to delete:"
+  stop_id = gets.chomp.to_i
+  Stop.delete(stop_id)
+  puts "The stop has been deleted."
 end
 
 main_menu
