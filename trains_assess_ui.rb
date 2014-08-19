@@ -69,13 +69,20 @@ def view_lines
 end
 
 def view_lines_by_station
-
+  view_stations
+  puts "\nEnter the index number for the station you want to view:\n"
+  station_id = gets.chomp.to_i
+  puts "\nThe trains for station #{station_id} are:\n"
+  trains = Train.find_trains_through_station(station_id)
+  trains.each do |train|
+    puts "#{train.id}. #{train.name}"
+  end
+  puts "\n"
 end
 
 def station_menu
   puts "\nEnter 'a' to add a station"
   puts "Enter 'v' to view all stations"
-  puts "Enter 'l' to view all stations for a line"
   puts "Enter 'm' to return to the main menu"
   puts "Enter 'x' to exit"
 
@@ -85,8 +92,6 @@ def station_menu
     add_station
   elsif user_choice == 'v'
     view_stations
-  elsif user_choice == 'l'
-    view_stations_by_line
   elsif user_choice == 'x'
     exit
   elsif user_choice != 'm'
@@ -109,5 +114,50 @@ def view_stations
   end
 end
 
+def stop_menu
+  puts "\nEnter 'a' to add a stop"
+  puts "Enter 'v' to view all stops"
+  puts "Enter 'm' to return to the main menu"
+  puts "Enter 'x' to exit"
+
+  user_choice = gets.chomp
+
+  if user_choice == 'a'
+    add_stop
+  elsif user_choice == 'v'
+    view_stops
+  elsif user_choice == 'x'
+    exit
+  elsif user_choice != 'm'
+    puts "\nNot a valid entry\n"
+  end
+end
+
+def add_stop
+  puts "\nWould you like to add a stop by train line or by station?"
+  puts "Enter 'l' for train or 's' for station"
+  user_choice = gets.chomp
+
+  if user_choice == 'l'
+    train_stop
+  elsif user_choice == 's'
+    station_stop
+  else
+    puts "Not a valid entry."
+  end
+end
+
+def train_stop
+  view_lines
+  puts "Please select the index number of the train line for the new stop:"
+  line_id = gets.chomp.to_i
+
+  view_stations
+  puts "\nPlease select the index number of the station for the new stop:"
+  station_id = gets.chomp.to_i
+
+  Stop.new({:line_id => line_id, :station_id => station_id}).save
+  puts "Stop for line #{line_id} at station #{station_id} has been created.\n"
+end
 
 main_menu
